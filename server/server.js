@@ -44,6 +44,13 @@ let jokes = [
   }
 ];
 
+
+app.get('/jokeArray', function(req,res){
+  console.log('sending jokes', jokes);
+  res.send(jokes);
+})
+
 app.post('/jokeArray', function(req,res){
   console.log('received joke', req.body);
+  res.sendStatus(201);
 })

@@ -4,7 +4,24 @@ $( document ).ready( onReady );
 
 function onReady() {
     console.log('DOM ready');
+    serverGET();
     $('#addJokeButton').on('click', serverPOST);
+}
+
+
+
+function serverGET(){
+    $.ajax({
+        method: 'GET',
+        url: 'jokeArray'
+    })
+    .then(function(response){
+        console.log('received joke on client', response);
+        //PROCESS THE ARRAY HERE - LOG TO DOM
+    })
+    .catch(function(err){
+        console.log('error',err);
+    })
 }
 
 
