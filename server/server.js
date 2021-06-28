@@ -44,12 +44,17 @@ let jokes = [
   }
 ];
 
-
+/**
+ * On GET request, respond with jokes array.
+ */
 app.get('/jokeArray', function(req,res){
   console.log('sending jokes', jokes);
   res.send(jokes);
 })
 
+/**
+ * On POST request, push joke to jokes array.  Respond with 201.
+ */
 app.post('/jokeArray', function(req,res){
   console.log('received joke', req.body);
   jokes.push(req.body);

@@ -2,13 +2,20 @@ console.log('client.js sourced');
 
 $( document ).ready( onReady );
 
+
+/**
+ * on ready - load current joke array.  Listen for button click to post new joke.
+ */
 function onReady() {
     console.log('DOM ready');
     serverGET();
     $('#addJokeButton').on('click', serverPOST);
 }
 
-
+/**
+ * Takes in the joke array from the GET request.  Appends array to DOM.
+ * @param {Array} jokeArray 
+ */
 function displayOnDOM(jokeArray){
     $('#outputDiv').empty();
     for (const joke of jokeArray){
@@ -19,7 +26,9 @@ function displayOnDOM(jokeArray){
         `)}
 }   
 
-
+/**
+ * GET request to server.  Should receive array - parameter for displayOnDOM()
+ */
 function serverGET(){
     $.ajax({
         method: 'GET',
@@ -36,6 +45,9 @@ function serverGET(){
 }
 
 
+/**
+ * POST request to send new joke to server based on DOM inputs.
+ */
 function serverPOST(){
     $.ajax({
         method: 'POST',
@@ -50,6 +62,7 @@ function serverPOST(){
         console.log('joke sent to server', response);
         ///UPDATE WITH GET REQUEST HERE
         serverGET();
+        $('.jokeInput').val('');
     })
     .catch(function(err){
         console.log('err', err);
