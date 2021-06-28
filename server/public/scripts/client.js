@@ -9,6 +9,16 @@ function onReady() {
 }
 
 
+function displayOnDOM(jokeArray){
+    $('#outputDiv').empty();
+    for (const joke of jokeArray){
+        $('#outputDiv').append(`
+                <li>Whose Joke: ${joke.whoseJoke}<br>
+                Question: ${joke.jokeQuestion}<br>
+                Punchline: ${joke.punchLine}</li>
+        `)}
+}   
+
 
 function serverGET(){
     $.ajax({
@@ -18,6 +28,7 @@ function serverGET(){
     .then(function(response){
         console.log('received joke on client', response);
         //PROCESS THE ARRAY HERE - LOG TO DOM
+        displayOnDOM(response);
     })
     .catch(function(err){
         console.log('error',err);
@@ -30,9 +41,9 @@ function serverPOST(){
         method: 'POST',
         url: '/jokeArray',
         data: {
-            author: $('#whoseJokeIn').val(),
-            question: $('#questionIn').val(),
-            punch: $('#punchlineIn').val()
+            whoseJoke: $('#whoseJokeIn').val(),
+            jokeQuestion: $('#questionIn').val(),
+            punchLine: $('#punchlineIn').val()
         }
     })
     .then(function(response){
