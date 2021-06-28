@@ -49,6 +49,7 @@ function serverPOST(){
     .then(function(response){
         console.log('joke sent to server', response);
         ///UPDATE WITH GET REQUEST HERE
+        serverGET();
     })
     .catch(function(err){
         console.log('err', err);

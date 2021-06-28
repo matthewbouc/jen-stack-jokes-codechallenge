@@ -52,5 +52,6 @@ app.get('/jokeArray', function(req,res){
 
 app.post('/jokeArray', function(req,res){
   console.log('received joke', req.body);
+  jokes.push(req.body);
   res.sendStatus(201);
 })
